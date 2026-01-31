@@ -1,77 +1,55 @@
-# Ted AI - Sarcastic Talking Teddy Bear
+# Ted AI — Sarcastic Talking Teddy Bear (Raspberry Pi)
 
-🧸 **Ted AI** is a Raspberry Pi-based interactive teddy bear that listens, thinks, and talks with personality. Say the wake word and Ted responds with a sarcastic Boston accent, powered by AI.
-
----
+Ted AI is a voice-driven teddy bear assistant for a :contentReference[oaicite:4]{index=4}. It listens for a wake word, transcribes speech, generates a snarky response, and speaks back using TTS.
 
 ## Features
-
-- **Wake-word detection**: Say "Hey Jarvis" and Ted wakes up.
-- **Speech-to-text**: Converts your speech to text using `faster-whisper`.
-- **AI responses**: Generates sarcastic, personality-driven replies via OpenAI.
-- **Text-to-speech**: Speaks with a Boston-accented voice using ElevenLabs.
-- **Bluetooth audio support**: Works with external Bluetooth speakers.
-- **Offline-first design**: Core audio processing runs on the Pi.
-- **TTS caching**: Saves audio locally to minimize API usage.
-
----
+- Wake word → listen loop
+- Speech-to-text (Whisper / faster-whisper style pipeline)
+- AI responses via :contentReference[oaicite:5]{index=5}
+- Text-to-speech via :contentReference[oaicite:6]{index=6}
+- TTS caching (reduces repeat API usage)
+- Optional Bluetooth speaker output
 
 ## Requirements
+- Raspberry Pi 4+ (recommended)
+- Python 3.10+ (3.11+ recommended)
+- Microphone + speaker (Bluetooth optional)
+- API keys:
+  - OpenAI
+  - ElevenLabs
 
-- Raspberry Pi 4 or newer
-- Python 3.13
-- Bluetooth speaker (optional, for audio output)
-- ElevenLabs API key (for TTS)
-- OpenAI API key (for AI responses)
-
----
-
-## Installation
-
-1. Clone the repository:
-
+## Quick Start (Recommended)
 ```bash
-git clone https://github.com/yourusername/ted-ai.git
-cd ted
-
-Create a virtual environment and activate it:
+git clone https://github.com/Tyler-ryan-code/ted-ai.git
+cd ted-ai
 
 python3 -m venv venv
 source venv/bin/activate
-
-
-Install dependencies:
-
 pip install -r requirements.txt
 
+cp .env.example .env
+# edit .env with your keys
 
-Set your API keys:
+bash run_ted.sh
 
-export ELEVEN_API_KEY="your_elevenlabs_api_key"
-export OPENAI_API_KEY="your_openai_api_key"
+Run Manually (Dev)
 
-Usage
+source venv/bin/activate
+python3 ted_listener.py
 
-Start Ted:
+Environment Variables
 
-python ted_listener.py
+Create a .env file (never commit it) using .env.example as a template.
 
+Example keys:
 
-Say the wake word: "Hey Jarvis"
+OPENAI_API_KEY=...
 
-Speak your command
+ELEVENLABS_API_KEY=...
 
-Ted responds with AI-generated speech
+Bluetooth Audio (Optional)
 
-Optional: Bluetooth Speaker Setup
-
-Make sure the adapter is powered:
-
-sudo hciconfig hci0 up
-
-
-Pair and connect via bluetoothctl:
-
+bluetoothctl
 power on
 agent on
 default-agent
@@ -81,27 +59,29 @@ trust <MAC_ADDRESS>
 connect <MAC_ADDRESS>
 exit
 
-
-Set as default audio sink:
+Set default sink:
 
 pactl set-default-sink <SINK_NAME>
-
 
 Test audio:
 
 aplay /usr/share/sounds/alsa/Front_Center.wav
 
-Tips
+Repo Notes
 
-Keep replies short to save ElevenLabs TTS credits
-
-Cached TTS audio is stored in cache/
-
-Use Ctrl+C to safely stop Ted
+Generated audio, logs, caches, venv, and secrets are ignored via .gitignore.
 
 License
 
-This project is licensed under the MIT License — see the LICENSE
- file for details.
+MIT — see LICENSE
 
-Made with 🧸, ☕, and a little bit of sarcasm.
+
+---
+
+
+
+
+
+
+
+
