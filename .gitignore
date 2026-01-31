@@ -1,5 +1,20 @@
+# Virtual environment
 venv/
+
+# Python cache
 __pycache__/
+
+# App cache
 cache/
+
+# Generated audio
 *.wav
 *.mp3
+
+# Secrets
+.env
+
+# (Optional)
+# *.log
+# .DS_Store
+# .vscode/
