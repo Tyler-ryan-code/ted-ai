@@ -18,3 +18,4 @@ cache/
 # *.log
 # .DS_Store
 # .vscode/
+logs/
