@@ -1,12 +1,12 @@
-# Ted AI — Sarcastic Talking Teddy Bear (Raspberry Pi)
+ Ted AI — Sarcastic Talking Teddy Bear (Raspberry Pi)
 
-Ted AI is a voice-driven teddy bear assistant for a :contentReference[oaicite:4]{index=4}. It listens for a wake word, transcribes speech, generates a snarky response, and speaks back using TTS.
+Ted AI is a voice-driven teddy bear assistant for a Raspberry Pi. It listens for a wake word, transcribes speech, generates a snarky response, and speaks back using TTS.
 
 ## Features
 - Wake word → listen loop
 - Speech-to-text (Whisper / faster-whisper style pipeline)
-- AI responses via :contentReference[oaicite:5]{index=5}
-- Text-to-speech via :contentReference[oaicite:6]{index=6}
+- AI responses via OpenAI
+- Text-to-speech via ElevenLabs
 - TTS caching (reduces repeat API usage)
 - Optional Bluetooth speaker output
 
@@ -41,11 +41,11 @@ Environment Variables
 
 Create a .env file (never commit it) using .env.example as a template.
 
-Example keys:
+Required:
 
-OPENAI_API_KEY=...
+    OPENAI_API_KEY
 
-ELEVENLABS_API_KEY=...
+    ELEVENLABS_API_KEY
 
 Bluetooth Audio (Optional)
 
@@ -70,18 +70,6 @@ aplay /usr/share/sounds/alsa/Front_Center.wav
 Repo Notes
 
 Generated audio, logs, caches, venv, and secrets are ignored via .gitignore.
-
 License
 
 MIT — see LICENSE
-
-
----
-
-
-
-
-
-
-
-
